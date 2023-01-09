@@ -10,17 +10,24 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); //views 파일들 위치 설정
+app.set('view engine', 'ejs'); //
 
-app.use(logger('dev'));
-app.use(express.json());
+// Morgan API 사용 $ npm install morgan  
+app.use(logger('dev'));  
+// body데이터를 해석하기 위해서 express.json()와 express.urlencoded()로 처리가 필요
+app.use(express.json());   
 app.use(express.urlencoded({ extended: false }));
+//요청된 쿠키를 쉽게 추출할 수 있도록 도와주는 미들웨어사용
 app.use(cookieParser());
+// expressjs에서 static file 경로를 설정 
+//  Static 파일들은 클라이언트에서 동작하는 자바스크립트나 css, html과 같은 리소스 파일들을 지칭
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// http://127.0.0.1:3000/
+app.use('/', indexRouter); // /로 시작하는 모든 요청에서 indexRouter 미들웨어 실행
+// http://127.0.0.1:3000/users
+app.use('/users', usersRouter); // /users 로 시작하는 모든 요청에서  usersRouter 미들웨어 실행
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

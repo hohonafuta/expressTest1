@@ -13,27 +13,29 @@ var http = require('http');
  */
 
 var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+// 위에 ../app.js 에서 var app = express(); express 모듈을 상속 받아서 set을 사용해 port를 지정
+app.set('port', port); 
 
 /**
  * Create HTTP server.
  */
-
+//http.createServer라는 기능은 서버 객체를 리턴하게 되는데 이 리턴한 객체를 서버에다가 저장
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen(port);
-server.on('error', onError);
+ 
+server.listen(port); //서버의 포트를 우리가 아까 설정해놓은 포트로 지정
+server.on('error', onError);  //에러 이벤트 발생시 에러 함수에서 리스닝 이벤트에서는 onListening 함수에서 싫행되도록 하는 코드
 server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
+//normalizePort() 트가 이상할때 포트를 교정
+function normalizePort(val) {  
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
