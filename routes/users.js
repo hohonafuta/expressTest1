@@ -20,10 +20,11 @@ router.get('/:id', function(req, res, next) {
   console.log( req.params); //http://127.0.0.1:3000/users/sound  입력시  {id: 'sound'}
   const { id } = req.params // 위에 처럼 써도 되고 이 방법으로 써도 된다.
   console.log('requiest id : ' + id);
+
   
   if ( id == "sound" ){
     console.log(" Request value : sound ");
-    sound(res,id);
+    sound(req,res,id);
   } else {
     console.log(" Request value :  " + id );
   }

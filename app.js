@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // http://127.0.0.1:3000/
 app.use('/', indexRouter); // /로 시작하는 모든 요청에서 indexRouter 미들웨어 실행
 // http://127.0.0.1:3000/users
+
 app.use('/users', usersRouter); // /users 로 시작하는 모든 요청에서  usersRouter 미들웨어 실행
 
 // catch 404 and forward to error handler
