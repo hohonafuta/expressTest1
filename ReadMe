@@ -1,2 +1,13 @@
 
 Git : https://github.com/hohonafuta/expressTest1.git
+
+#html 로 테스트하는 버전
+D:\WorkSpace_VSC\expressTest\expressTest1\html\sound.html
+/user/sound         --- sound.js 
+
+
+#ejs 로 테스트 하는 버젼
+/                   --- index.js
+
+
+

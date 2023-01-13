@@ -1,6 +1,6 @@
 var express = require('express');
 
-const { sound } = require('./sound'); // 설정한 변수를 사용하고자 할때 { } 로 감싸서 require  해야 한다. 
+const { sound } = require('./sound_htm'); // 설정한 변수를 사용하고자 할때 { } 로 감싸서 require  해야 한다. 
 var router = express.Router();
 
 //var sound = require('./sound');
@@ -10,6 +10,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 }); */
+
 
 
 router.get('/:id', function(req, res, next) {
@@ -22,11 +23,16 @@ router.get('/:id', function(req, res, next) {
   console.log('requiest id : ' + id);
 
   
-  if ( id == "sound" ){
-    console.log(" Request value : sound ");
+  if ( id == "sound_html" ){
+    console.log(" Request value 1: sound ");
     sound(req,res,id);
-  } else {
-    console.log(" Request value :  " + id );
+  } else if ( id == "sound" ){
+    //router.get('/sound', function(req, res, next) {
+      res.render('sound_ejs', { title: ' Sound Express Node.js Test' });
+    //});
+  }
+  else {
+    console.log(" Request value etc :  " + id );
   }
 
 });
