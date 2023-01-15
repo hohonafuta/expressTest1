@@ -30,6 +30,9 @@ router.get('/:id', function(req, res, next) {
     //router.get('/sound', function(req, res, next) {
       res.render('sound_ejs', { title: ' Sound Express Node.js Test' });
     //});
+  } else if ( id == "NewAccount" ){
+      res.render('NewAccount/NewAccount', { title: ' NewAccount.js Test' });
+      console.log("NewAccount In ");
   }
   else {
     console.log(" Request value etc :  " + id );
