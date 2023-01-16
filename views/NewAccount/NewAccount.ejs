@@ -18,6 +18,8 @@
                 //아래에서 정의한 .warning 는 클래스명을 나타낸다.
                 $('.warning').text('');
 
+                let errFlag=0; //error 발생여부 플래그
+
                 console.log("Join button clicked !");
                 //$('#inputID').val() 를 썻 값을 가져온다.
                 let studenId=$('#inputID').val();
@@ -42,6 +44,7 @@
                 } else {
                     console.log("studenId not defined!" );
                     $('#warningName').text("ID를 입력하세요 !");
+                    errFlag=1;
                 }
 
                 if(pw1 === pw2){
@@ -49,6 +52,7 @@
                 } else {
                     console.log("Password Unmatched!");
                     $('#warningPasswd').text("패스워드가 다릅니다.");
+                    errFlag=1;
                 }
 
                 if(pw1 && pw2){ } else {
@@ -61,6 +65,36 @@
                 } else {
                     console.log("관심분야가 선택되지 않았습니다.");
                     $('#warningRadio').text("관심분야가 선택되지 않았습니다.");
+                    errFlag=1;
+                }
+
+                let dataValue={"studentId": studenId,
+                               "pw": pw1,
+                               "address": Address 
+                }
+
+                if(errFlag == 0){ //에러가 없으면
+                    // jQuery 안에 있는걸 실행하려면 $. 로 시작해야한다.
+                    // 아래는 join 버튼이 눌리면  jQuery를 이용하여 값을 가져와서
+                    // url 에 지정된 곳으로 post 방식으로 전송한다.
+                    $.ajax({
+                        // url 은 내가 어디로 보내겠느냐를 선언  => [ Send ]
+                        'url': '/NewAccountUpdate' ,
+                        'type': 'post',
+                        'dataType': 'json',
+                        'data': dataValue,
+                        // front-end 에서 response한 json 데이터를 받아 처리 => [ Receive ]
+                        'success': function(results) {
+                            console.log(results.message);
+                            console.log(results.flag);
+
+                            if(results.flag == 1){
+                                $('#results').text('성공적으로 저장 되었습니다. !');
+                            } else {
+                                $('#results').text('저장에 실패하였습니다. !');
+                            }
+                        }
+                    });
                 }
 
 
@@ -233,6 +267,8 @@
             <button type="button" id="btnJoin" class="btn btn-primary">Join</button>
             <button type="button" id="btnCancle" class="btn btn-danger ">Cancle</button>
         </div>
+
+        <div id="results"></div>
 
         </form>
         <div style="margin-left: 50px ; font-size: 20px;">
