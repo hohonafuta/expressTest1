@@ -93,6 +93,10 @@
                             } else {
                                 $('#results').text('저장에 실패하였습니다. !');
                             }
+                        },
+                        // front-end에서 데이터가 오지 않거나 잘못된경우 아래 수행(error시 수행)
+                        "error": function(){
+
                         }
                     });
                 }

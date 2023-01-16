@@ -29,9 +29,10 @@ router.post('/NewAccountUpdate', function(req, res, next) {
   // 저장된 결과가 성공적이면 flag 변수에 1은 넣고
   // MySql에 저장 실패하면 flag에 0을 넣음
   let flag = 1;
-
+  let data = []; //이곳 데이터에는 굉장히 복잡한 json 문서이거나 파일이거나 등등..을 보낼수 있다.
   // json 포멧으로 결과를 응답해준다. => [ Response ]
   res.json({
+    "data": data,
     "message": "returned",
     "flag": flag
   })
